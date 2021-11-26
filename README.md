@@ -11,5 +11,5 @@ Dotfiles of my GNU/inux rice.
 + **Browser**: [Firefox](https://www.mozilla.org/en-US/firefox/new/)
 
 
-<img src="https://raw.githubusercontent.com/Deluca-Sintax-Error/Dotfiles/blob/main/screenshot-1.jpg" alt="img" align="center">
-<img src="https://raw.githubusercontent.com/Deluca-Sintax-Error/Dotfiles/blob/main/screenshot-2.jpg" alt="img" align="center">
+<img src="https://raw.githubusercontent.com/Deluca-Sintax-Error/Dotfiles/main/screenshot-1.png" alt="img" align="center">
+<img src="https://raw.githubusercontent.com/Deluca-Sintax-Error/Dotfiles/main/screenshot-2.png" alt="img" align="center">
