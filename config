@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+import subprocess
+
+#imprime las opciones
+print('''¿que quieres configurar, escribe el numero o nombre.
+1.qtile
+2.picom
+3.zsh''')
+
+#la respuesta
+r = input('>')
+
+#envia a diferentes archivos de configuracion dependiendo de la respuesta(r)
+if r == "1" or r == "qtile":
+	subprocess.check_call(["vim", ".config/qtile/config.py"])
+if r == "2" or r == "picom":
+	subprocess.check_call(["vim" , ".config/picom.conf"])
+if r == "3" or r == "zsh":
+	subprocess.check_call(["vim" , ".zshrc"])
+
+
