@@ -30,31 +30,26 @@ from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from libqtile.widget import PulseVolume
 import os
 import subprocess
 import datetime
-import pyscreenshot
 
 mod = "mod4"
 terminal = guess_terminal()
 
-#--------startup-------#
+
+# --------startup-------#
 
 @hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser('~')
     subprocess.Popen([home + '/.config/qtile/start.sh'])
-#------end-startup-----#
-
-#-------screenshot-----#
-def screenshot():
-    folder = "/home/fabri/Pictures/screenshot/"
-    image  = pyscreenshot.grab()
-    time   = datetime.datetime.now()
-    image.save(folder + str(time) + ".png")
 
 
-#-----------keys----------#
+# ------end-startup-----#
+	
+# -----------keys----------#
 keys = [
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -101,58 +96,60 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
-   #----------my keybins-----------#
-   Key([mod, "shift"], "f", lazy.spawn("firefox"), desc="Launch firefox"),
-   Key([], "XF86AudioRaiseVolume", 
-lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%"), desc="+10 volume"),
-   Key([], "XF86AudioLowerVolume", 
-lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%"), desc="-1' volume"),
-Key([], "Print", 
-lazy.spawn("python3 /home/fabri/.config/qtile/screenshot.py ")),
+    # ----------my keybins-----------#
+    Key([mod, "shift"], "f", lazy.spawn("firefox-developer-edition"), desc="Launch firefox"),
+    Key([], "XF86AudioRaiseVolume",
+        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%"), desc="+10 volume"),
+    Key([], "XF86AudioLowerVolume",
+        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%"),desc="-1' volume"),
+    Key([], "Print",
+        lazy.spawn("python3 /home/fabri/.config/qtile/screenshot.py && notify-send 'screenshot taked'")),
+    Key([mod], "t", lazy.spawn("pcmanfm"), desc="Lauch pcmanfm"),
+    Key([mod], "d", lazy.spawn("rofi -show drun"), desc="Launch launcher"),
 ]
-
-#groups = [Group(i) for i in "123456789"]
-#---------workspaces--------------#
+# groups = [Group(i) for i in "123456789"]
+# ---------workspaces--------------#
 groups = [
     Group(name="1", label="  ", layout="monadtall",
-        matches=[
-            Match(wm_class="tilix"),
-            Match(wm_class="Alacritty"),
-            Match(wm_class="Termite"),
-            Match(wm_class="Xfce4-terminal"),
-        ]),
+          matches=[
+              Match(wm_class="tilix"),
+              Match(wm_class="Alacritty"),
+              Match(wm_class="Termite"),
+              Match(wm_class="Xfce4-terminal"),
+          ]),
     Group(name="2", label="  ", layout="monadtall",
-        matches=[
-            Match(wm_class="google-chrome-stable"),
-            Match(wm_class="firefox"),
-            Match(wm_class="Vivaldi-stable"),
-        ]),
+          matches=[
+              Match(wm_class="google-chrome-stable"),
+              Match(wm_class="firefoxdeveloperedition"),
+              Match(wm_class="Vivaldi-stable"),
+          ]),
     Group(name="3", label="  ", layout="monadtall",
-        matches=[
-            Match(wm_class="Org.gnome.Nautilus"),
-        ]),
+          matches=[
+              Match(wm_class="Org.gnome.Nautilus"),
+          ]),
     Group(name="4", label="", layout="monadtall",
-        matches=[
-            Match(wm_class="discord"),
-        ]),
+          matches=[
+              Match(wm_class="discord"),
+          ]),
     Group(name="5", label="  ", layout="monadtall",
-        matches=[
-            Match(wm_class="Sublime_text"), 
-        ]),
+          matches=[
+              Match(wm_class="Sublime_text"),
+          ]),
     Group(name="6", label="  ", layout="monadtall",
-        matches=[
-            Match(wm_class="RStudio"),
-        ]),
+          matches=[
+              Match(wm_class="RStudio"),
+          ]),
     Group(name="7", label="  ", layout="monadtall",
-        matches=[
-            Match(wm_class="Typora"),
-            Match(wm_class="zettlr"),
-            Match(wm_class="marktext"),
-        ]),
-    Group(name="8", label="  ", layout="monadtall",
-        matches=[
-            Match(wm_class="Lxappearance"),
-        ]),
+          matches=[
+              Match(wm_class="Typora"),
+              Match(wm_class="zettlr"),
+              Match(wm_class="marktext"),
+          ]),
+    Group(name="8", label="", layout="monadtall",
+          matches=[
+              Match(wm_class="Lxappearance"),
+	      Match(wm_class="Spotify"),
+          ]),
 ]
 
 for i in groups:
@@ -171,10 +168,10 @@ for i in groups:
     ])
 
 layoutTheme = {"border_focus": "#282a36",
-		"border-width": 2,
-		"margin": 4,
-		"font": "Hack"		
-}
+               "border-width": 2,
+               "margin": 4,
+               "font": "Hack"
+               }
 layouts = [
     layout.Columns(**layoutTheme),
     layout.Tile(**layoutTheme),
@@ -201,41 +198,43 @@ extension_defaults = widget_defaults.copy()
 Cbackground = "#282a36"
 
 color = [
-	["#424153", "#424153"], #dark
-	["663399" , "663399" ], #violet
-	["#993399", "#993399"], #pink dark
-	["333399",  "333399" ], #blue
-	["ea4c88",  "ea4c88" ], #pink
-	["#FFFFFF", "#FFFFFF"], #white
+    ["#424153", "#424153"],  # dark
+    ["663399", "663399"],  # violet
+    ["#993399", "#993399"],  # pink dark
+    ["333399", "333399"],  # blue
+    ["ea4c88", "ea4c88"],  # pink
+    ["#FFFFFF", "#FFFFFF"],  # white
 ]
-#------------bar---------#
+# ------------bar---------#
 screens = [
     Screen(
         bottom=bar.Bar(
-		[
-                widget.GroupBox(background = color[3], foreground = color[5]),
-                widget.Prompt(background = color[4], foreground = color[0]),
-                widget.WindowName(background = color[0], foreground = color[4]),
+            [
+                widget.GroupBox(background=color[3], foreground=color[5]),
+                widget.Prompt(background=color[4], foreground=color[0]),
+                widget.WindowName(background=color[0], foreground=color[4]),
                 widget.Chord(
                     chords_colors={
                         'launch': ("#ff0000", "#ffffff"),
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                #widget.TextBox("default config", name="default"),
-		#widget.TextBox("Press &lt;M-r&gt; to spawn", 
-		#foreground="#d75f5f"),
-		widget.CurrentLayout(background = color[0], foreground = color[4]),
-                widget.Systray(background = color[2]),
+                # widget.TextBox("default config", name="default"),
+                # widget.TextBox("Press &lt;M-r&gt; to spawn",
+                # foreground="#d75f5f"),
+                widget.CurrentLayout(background=color[0], foreground=color[4]),
+                widget.Systray(background=color[2]),
+		widget.Volume(format='',background=color[2]),
                 widget.Clock(format=' %I:%M %p',
-			     background = color[2]),
-                widget.QuickExit(background = color[2], foreground = color[0]),
+                             background=color[2]),
+
+                widget.QuickExit(background=color[2], foreground=color[0]),
             ],
             24,
         ),
     ),
 ]
-#----------end-bar--------#
+# ----------end-bar--------#
 
 # Drag floating layouts.
 mouse = [
