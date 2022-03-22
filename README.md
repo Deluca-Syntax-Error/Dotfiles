@@ -13,3 +13,4 @@ Dotfiles of my GNU/inux rice.
 
 <img src="https://raw.githubusercontent.com/Deluca-Sintax-Error/Dotfiles/main/screenshot-1.png" alt="img" align="center">
 <img src="https://raw.githubusercontent.com/Deluca-Sintax-Error/Dotfiles/main/screenshot-2.png" alt="img" align="center">
+<img src="https://raw.githubusercontent.com/Deluca-Sintax-Error/Dotfiles/main/screenshot-2.png" alt="img" align="center">
