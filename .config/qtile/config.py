@@ -167,9 +167,10 @@ for i in groups:
         #     desc="move focused window to group {}".format(i.name)),
     ])
 
-layoutTheme = {"border_focus": "#282a36",
+layoutTheme = {"border_focus": "#7730B3",
                "border-width": 2,
-               "margin": 4,
+               "margin": 22,
+	       "border_normal":"#A461BE",
                "font": "Hack"
                }
 layouts = [
@@ -199,7 +200,7 @@ Cbackground = "#282a36"
 
 color = [
     ["#424153", "#424153"],  # dark
-    ["663399", "663399"],  # violet
+    ["4c175f", "4c175f"],  # violet
     ["#993399", "#993399"],  # pink dark
     ["333399", "333399"],  # blue
     ["ea4c88", "ea4c88"],  # pink
@@ -210,9 +211,10 @@ screens = [
     Screen(
         bottom=bar.Bar(
             [
-                widget.GroupBox(background=color[3], foreground=color[5]),
+		widget.GroupBox(background=color[1], foreground=color[5]),
                 widget.Prompt(background=color[4], foreground=color[0]),
-                widget.WindowName(background=color[0], foreground=color[4]),
+                #widget.WindowName(background=color[0], foreground=color[4], opacity=0.1),
+		widget.Spacer(background="#00000000", opacity=1),
                 widget.Chord(
                     chords_colors={
                         'launch': ("#ff0000", "#ffffff"),
@@ -222,15 +224,19 @@ screens = [
                 # widget.TextBox("default config", name="default"),
                 # widget.TextBox("Press &lt;M-r&gt; to spawn",
                 # foreground="#d75f5f"),
-                widget.CurrentLayout(background=color[0], foreground=color[4]),
-                widget.Systray(background=color[2]),
-		widget.Volume(format='',background=color[2]),
-                widget.Clock(format=' %I:%M %p',
-                             background=color[2]),
+                #widget.CurrentLayout(background="#00000000", foreground=color[4]),
+                #widget.Systray(background=color[1], foreground=color[4], opacity=0),
+		#widget.Systray(backgrond="#00000000"),
+		widget.TextBox("",background=color[1]),
+		widget.Volume(background=color[1]),
+                widget.Clock(format='%d/%m/%y %H:%M:%S',
+                             background=color[1], opacity=0),
 
-                widget.QuickExit(background=color[2], foreground=color[0]),
+                #widget.QuickExit(background=color[1], foreground=color[0]),
             ],
             24,
+	    background="#00000000",
+	    opacity=1,
         ),
     ),
 ]
