@@ -1,5 +1,5 @@
 # Dotfiles
-Dotfiles of my GNU/inux rice.
+Dotfiles of my GNU/Linux rice.
 
 + **WM**: [Qtile](https://github.com/qtile/qtile)
 + **OS**: [Arch Linux](https://archlinux.org/)
